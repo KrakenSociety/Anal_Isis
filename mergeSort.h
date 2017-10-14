@@ -1,3 +1,13 @@
+/*
+*	Aight bois, this one is a little bit more complex, use expected format for function call, i.e:
+*				mergesort(vector); <-- should work
+*	basically breaks up vector into smaller sub-arrays until only a single value is left and sorts all that mess
+*	combining it all together at the end to result in a sorted vector
+*
+*
+*/
+
+
 #ifndef MERGESORT_H
 #define MERGESORT_H
 

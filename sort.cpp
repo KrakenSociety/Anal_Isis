@@ -10,23 +10,23 @@ using namespace std;
 #include<algorithm>
 //including the sorting files
 #include "quicksort.h"
-#include "mergesort.h"
-#include "selectionsort.h"
+#include "mergeSort.h"
+#include "selectionSort.h"
 #include "insertionsort.h"
 #include "heapsort.h"
 
 
 
 //prototype function
-void printArray(int arr[], int size);
-void increase (vector<int> v, int size);
-void decrease (vector<int> v, int size);
-void random   (vector<int> v, int size);
-void fill_x   (vector<int> a1, vector<int> a2, vector<int> a3, int size);
+void printVector(vector<int> v);
+void increase (vector<int>& v, int size);
+void decrease (vector<int>& v, int size);
+void random   (vector<int>& v, int size);
+void fill_x   (vector<int>& a1, vector<int>& a2, vector<int>& a3, int size);
 
 
 int main(){
-    
+
     //creating array sizes
     int size1 = 100;
     int size2 = 1000;
@@ -37,7 +37,7 @@ int main(){
     vector<int> v1;
     vector<int> v2;
     vector<int> v3;
-    
+
     int x = 1;
     while(x != 0){
         cout << "Please choose a sorting method\n"
@@ -92,7 +92,7 @@ int main(){
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time1 = (t2 - t1)/CLOCKS_PER_SEC;
-                
+
                 t1 = clock();
                 insertionsort(v2,count);    //100 values
                 t2 = clock();
@@ -100,7 +100,7 @@ int main(){
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time2 = (t2 - t1)/CLOCKS_PER_SEC;
-                
+
                  t1 = clock();
                 insertionsort(v3,count);    //100 values
                 t2 = clock();
@@ -109,7 +109,7 @@ int main(){
                 count = 0;
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
-                
+
                 ++pass;
             }
         }
@@ -127,7 +127,7 @@ int main(){
                 //one in increasing order, one in decreaing order
                 //and one randomly respectively
                 if(pass == 1){
-                    fill_x(v1,v2,v3,size1); 
+                    fill_x(v1,v2,v3,size1);
                     size = size1;
                 }
                 else if(pass == 2){
@@ -149,7 +149,7 @@ int main(){
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double T100_1 = (t2 - t1) / CLOCKS_PER_SEC;
-                
+
                 t1 = clock();
                 mergesort(v2);    //all values in indexes are between 1 and 100
                 t2 = clock();
@@ -157,7 +157,7 @@ int main(){
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double T100_2 = (t2 - t1) / CLOCKS_PER_SEC;
-                
+
                 t1 = clock();
                 mergesort(v3);    //all values in indexes are between 1 and 100
                 t2 = clock();
@@ -194,35 +194,37 @@ int main(){
                 }
                 cout << "size: " << size << endl;
                 t1 = clock();
-                quicksort(v1,0,size,count);    //100 values
+                quicksort(v1,0,size - 1,count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values increasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time1 = (t2 - t1)/CLOCKS_PER_SEC;
-                
+
                 t1 = clock();
-                quicksort(v2,0,size,count);    //100 values
+                quicksort(v2,0,size - 1,count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  decreasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time2 = (t2 - t1)/CLOCKS_PER_SEC;
-                
+
                  t1 = clock();
-                quicksort(v3,0,size,count);    //100 values
+                quicksort(v3,0,size - 1,count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  randomized the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
-                
-                ++pass;
+                cout << "Having average time of: " << avg << endl;
+
+
+                pass++;
             }
         }
         else if (x == 7){
-            
+
         }
         else if (x == 8){
             cout << "RUNNING HEAP SORT\n";
@@ -255,7 +257,7 @@ int main(){
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time1 = (t2 - t1)/CLOCKS_PER_SEC;
-                
+
                 t1 = clock();
                 heapsort(v2,count);    //100 values
                 t2 = clock();
@@ -263,7 +265,7 @@ int main(){
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time2 = (t2 - t1)/CLOCKS_PER_SEC;
-                
+
                  t1 = clock();
                 heapsort(v3,count);    //100 values
                 t2 = clock();
@@ -272,7 +274,7 @@ int main(){
                 count = 0;
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
-                
+
                 ++pass;
             }
         }
@@ -281,7 +283,7 @@ int main(){
 }
 
 
-void printVector(vector<int> v){
+void printVector(vector<int>& v){
     for(int i = 0; i < v.size(); i++){
         cout << "[" << v[i] << "]  ";
         if((i % 10) == 0){              //prints 10 before moving to a new line
@@ -292,20 +294,21 @@ void printVector(vector<int> v){
 }
 
 
-void increase (vector<int> v, int size){
+void increase (vector<int>& v, int size){
     for (int i = 0; i < size; ++i){
         v.push_back(i+1);
+        //cout << v[i] << endl;
     }
     return;
 }
 
-void decrease(vector<int> v, int size){
+void decrease(vector<int>& v, int size){
     increase(v, size);
     reverse(v.begin(), v.end());
     return;
 }
 
-void random(vector<int> v, int size){
+void random(vector<int>& v, int size){
     for (int i = 0; i < size; ++i){
         srand(time(NULL));
         int randNum = rand() % 100 + 1;
@@ -318,7 +321,7 @@ void random(vector<int> v, int size){
 /**
  * filling the vectors with inceasing, decreasing, and random values
  */
-void fill_x(vector<int> a1, vector<int> a2, vector<int> a3, int size){
+void fill_x(vector<int>& a1, vector<int>& a2, vector<int>& a3, int size){
     increase(a1, size);
     decrease(a2, size);
     random(a3, size);

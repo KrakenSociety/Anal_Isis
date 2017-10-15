@@ -224,7 +224,58 @@ int main(){
             }
         }
         else if (x == 7){
+            cout << "RUNNING RANDOMIZED QUICK SORT\n";
+            int pass = 1;  //creating number of passes to know when to increment the size of the vector
+            clock_t t1, t2; //creating time variables to time the algorithms
+            int count = 0;  //number of comparisons
+            int size  = 0;  //size of vector
+            while(pass < 5){
+                if(pass == 1){
+                    fill_x(v1,v2,v3,size1);
+                    size = size1;
+                }
+                else if(pass == 2){
+                    fill_x(v1,v2,v3,size2);
+                    size = size2;
+                }
+                else if(pass == 3){
+                    fill_x(v1,v2,v3,size3);
+                    size = size3;
+                }
+                else{
+                    fill_x(v1,v2,v3,size4);
+                    size = size4;
+                }
+                cout << "size: " << size << endl;
+                t1 = clock();
+                randomquicksort(v1,0,size - 1,count);    //100 values
+                t2 = clock();
+                cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
+                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
+                t1 = clock();
+                randomquicksort(v2,0,size - 1,count);    //100 values
+                t2 = clock();
+                cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
+                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+
+                 t1 = clock();
+                randomquicksort(v3,0,size - 1,count);    //100 values
+                t2 = clock();
+                cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
+                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                double avg   = (time1 + time2 + time3) / 3;
+                cout << "Having average time of: " << avg << endl;
+
+
+                pass++;
+            }
         }
         else if (x == 8){
             cout << "RUNNING HEAP SORT\n";

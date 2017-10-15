@@ -16,11 +16,8 @@
 #include <vector>
     using std::vector;
 
-void swap(int& a, int& b){
-    int temp = a;
-    a = b;
-    b = temp;
-}    
+
+
     
 void selectionsort(vector<int>& v){
     int i, j;

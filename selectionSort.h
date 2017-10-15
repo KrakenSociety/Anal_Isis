@@ -7,6 +7,8 @@
 #ifndef SELECTIONSORT_H
 #define SELECTIONSORT_H
 
+#include <algorithm>
+
 #include <iostream>
     using std::cout;
     using std::cin;
@@ -32,7 +34,7 @@ void selectionsort(vector<int>& v){
         }
         //perform swap if another minimum value is found
         if(min != j){
-            swap(v[j], v[min]);
+            std::swap(v[j], v[min]);
         }
     }
 }

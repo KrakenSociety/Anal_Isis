@@ -106,6 +106,7 @@ int main(){
                 cout << "Having average time of: " << avg << endl;
 
                 pass++;   
+            }
         }
         else if(x == 2){
             cout << "RUNNING BUBBLE SORT\n";
@@ -135,7 +136,7 @@ int main(){
                 }
                 cout << "size: " << size << endl;
                 t1 = clock();
-                insertionsort(v1,count);    //100 values
+                insertionsort(v1, count);    //100 values
                 t2 = clock();
                 cout << "for " << size << " values increasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
@@ -143,7 +144,7 @@ int main(){
                 double time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
                 t1 = clock();
-                insertionsort(v2,count);    //100 values
+                insertionsort(v2, count);    //100 values
                 t2 = clock();
                 cout << "for " << size << " values  decreasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
@@ -151,7 +152,7 @@ int main(){
                 double time2 = (t2 - t1)/CLOCKS_PER_SEC;
 
                  t1 = clock();
-                insertionsort(v3,count);    //100 values
+                insertionsort(v3, count);    //100 values
                 t2 = clock();
                 cout << "for " << size << " values  randomized the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
@@ -351,7 +352,7 @@ int main(){
                 }
                 cout << "size: " << size << endl;
                 t1 = clock();
-                heapsort(v1,count);    //100 values
+                heapsort(v1, count);    //100 values
                 t2 = clock();
                 cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
@@ -359,7 +360,7 @@ int main(){
                 double time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
                 t1 = clock();
-                heapsort(v2,count);    //100 values
+                heapsort(v2, count);    //100 values
                 t2 = clock();
                 cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
@@ -367,7 +368,7 @@ int main(){
                 double time2 = (t2 - t1)/CLOCKS_PER_SEC;
 
                  t1 = clock();
-                heapsort(v3,count);    //100 values
+                heapsort(v3, count);    //100 values
                 t2 = clock();
                 cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;

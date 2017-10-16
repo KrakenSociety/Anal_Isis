@@ -112,7 +112,7 @@ int main(){
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
-                double avg   = (time1 + time2 + time3) / 3;
+                double avg   = (time1 + time2 + time3) / 3.0;
                 cout << "Having average time of: " << avg << endl;
                 //print sorted matrix
                 printVector(v1);
@@ -156,7 +156,7 @@ int main(){
                 cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
                 t1 = clock();
                 bubblesort(v2, count);    //100 values
@@ -164,7 +164,7 @@ int main(){
                 cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time2 = (t2 - t1)/CLOCKS_PER_SEC;
 
                  t1 = clock();
                 bubblesort(v3, count);    //100 values
@@ -172,8 +172,8 @@ int main(){
                 cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
-                double avg   = (time1 + time2 + time3) / 3;
+                float time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                float avg   = (time1 + time2 + time3) / 3.0;
                 cout << "Having average time of: " << avg << endl;
                 //print sorted matrix
                 printVector(v1);
@@ -217,7 +217,7 @@ int main(){
                 cout << "for " << size << " values increasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
                 t1 = clock();
                 insertionsort(v2, count);    //100 values
@@ -225,7 +225,7 @@ int main(){
                 cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time2 = (t2 - t1)/CLOCKS_PER_SEC;
 
                  t1 = clock();
                 insertionsort(v3, count);    //100 values
@@ -233,8 +233,8 @@ int main(){
                 cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
-                double avg   = (time1 + time2 + time3) / 3;
+                float time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                float avg   = (time1 + time2 + time3) / 3.0;
                 //print sorted matrix
                 printVector(v1);
                 printVector(v2);
@@ -243,8 +243,7 @@ int main(){
             }
         }
         else if(x == 4){
-             cout << "RUNNING MODIFIED INSERTION\n";
-            
+            cout << "RUNNING MODIFIED INSERTION\n";
             int pass = 1;  //creating number of passes to know when to increment the size of the vector
             clock_t t1, t2; //creating time variables to time the algorithms
             int count = 0;  //number of comparisons
@@ -266,32 +265,39 @@ int main(){
                     fill_x(v1,v2,v3,size4);
                     size = size4;
                 }
+                //print unsorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 cout << "size: " << size << endl;
-                
                 t1 = clock();
-                count = modinsertionsort(v1);    //100 values
+                modinsertionsort(v1, count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
-                << " with " << count << " comparisons." << endl; 
+                cout << "for " << size << " values increasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
                 double time1 = (t2 - t1)/CLOCKS_PER_SEC;
-                cin.get();
-                
+            
                 t1 = clock();
-                count = modinsertionsort(v2);    //100 values
+                modinsertionsort(v2, count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  decreasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
+                count = 0;
                 double time2 = (t2 - t1)/CLOCKS_PER_SEC;
-                cin.get();
-
+            
                  t1 = clock();
-                count = modinsertionsort(v3);    //100 values
+                modinsertionsort(v3, count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  randomized the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
+                count = 0;
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
-                double avg   = (time1 + time2 + time3) / 3;
-               cin.get();   
+                double avg   = (time1 + time2 + time3) / 3.0;
+                //print sorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 ++pass;
             }
         }
@@ -329,7 +335,7 @@ int main(){
                 cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
                 t1 = clock();
                 mergesort(v2, count);    //100 values
@@ -337,7 +343,7 @@ int main(){
                 cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time2 = (t2 - t1)/CLOCKS_PER_SEC;
 
                  t1 = clock();
                 mergesort(v3, count);    //100 values
@@ -345,8 +351,8 @@ int main(){
                 cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
-                double avg   = (time1 + time2 + time3) / 3;
+                float time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                float avg   = (time1 + time2 + time3) / 3.0;
                 cout << "Having average time of: " << avg << endl;
                 //print sorted matrix
                 printVector(v1);
@@ -389,7 +395,7 @@ int main(){
                 cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
                 t1 = clock();
                 quicksort(v2,0,size - 1,count);    //100 values
@@ -397,7 +403,7 @@ int main(){
                 cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time2 = (t2 - t1)/CLOCKS_PER_SEC;
 
                  t1 = clock();
                 quicksort(v3,0,size - 1,count);    //100 values
@@ -405,8 +411,8 @@ int main(){
                 cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
-                double avg   = (time1 + time2 + time3) / 3;
+                float time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                float avg   = (time1 + time2 + time3) / 3.0;
                 cout << "Having average time of: " << avg << endl;
                 //print sorted matrix
                 printVector(v1);
@@ -449,7 +455,7 @@ int main(){
                 cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
                 t1 = clock();
                 randomquicksort(v2,0,size - 1,count);    //100 values
@@ -457,7 +463,7 @@ int main(){
                 cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time2 = (t2 - t1)/CLOCKS_PER_SEC;
 
                  t1 = clock();
                 randomquicksort(v3,0,size - 1,count);    //100 values
@@ -465,8 +471,8 @@ int main(){
                 cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
-                double avg   = (time1 + time2 + time3) / 3;
+                float time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                float avg   = (time1 + time2 + time3) / 3.0;
                 cout << "Having average time of: " << avg << endl;
                 //print sorted matrix
                 printVector(v1);
@@ -509,7 +515,7 @@ int main(){
                 cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
                 t1 = clock();
                 heapsort(v2, count);    //100 values
@@ -517,7 +523,7 @@ int main(){
                 cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+                float time2 = (t2 - t1)/CLOCKS_PER_SEC;
 
                  t1 = clock();
                 heapsort(v3, count);    //100 values
@@ -525,8 +531,8 @@ int main(){
                 cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
-                double avg   = (time1 + time2 + time3) / 3;
+                float time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                float avg   = (time1 + time2 + time3) / 3.0;
                 cout << "Having average time of: " << avg << endl;
                 //print sorted matrix
                 printVector(v1);

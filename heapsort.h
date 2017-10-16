@@ -1,3 +1,8 @@
+/*    Kody Martens I.D. 50423206
+ *    this is heap sort algorithm
+ */
+
+
 #ifndef HEAPSORT_H
 #define HEAPSORT_H
 
@@ -8,7 +13,7 @@
  
 // To heapify a subtree rooted with node root which is
 // an index in vector. 
-void heapify(vector<int> v, int root, int& count){
+void heapify(vector<int>& v, int root, int& count){
     int largest = root;  // Initialize largest as root
     int left    = 2 * root + 1;  
     int right   = 2 * root + 2; 
@@ -35,7 +40,7 @@ void heapify(vector<int> v, int root, int& count){
     }
 }
  
-void heapsort(vector<int> v, int& count){
+void heapsort(vector<int>& v, int& count){
     // Build heap (rearrange vector)
     for (int root = v.size() / 2 - 1; root >= 0; --root){
         heapify(v, root, count);

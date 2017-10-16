@@ -2,15 +2,12 @@
     using std::cout;
     using std::cin;
     using std::endl;
-    using std::left;
 #include <time.h>
 #include <cstdlib>
     using namespace std;
 #include<vector>
     using std::vector;
 #include<iomanip>
-    using std::setprecision;
-    using std::fixed;
     using std::setw;
 #include<algorithm>
 
@@ -21,6 +18,7 @@
 #include "selectionsort.h"
 #include "insertionsort.h"
 #include "heapsort.h"
+#include "bubblesort.h"
 
 
 
@@ -125,6 +123,64 @@ int main(){
         }
         else if(x == 2){
             cout << "RUNNING BUBBLE SORT\n";
+            int pass = 1;   //creating number of passes to know when to increment the size of the vector
+            clock_t t1, t2; //creating time variables to time the algorithms
+            int count = 0;  //number of comparisons
+            int size  = 0;  //size of vector
+            while(pass < 5){
+                if(pass == 1){
+                    fill_x(v1,v2,v3,size1);
+                    size = size1;
+                }
+                else if(pass == 2){
+                    fill_x(v1,v2,v3,size2);
+                    size = size2;
+                }
+                else if(pass == 3){
+                    fill_x(v1,v2,v3,size3);
+                    size = size3;
+                }
+                else{
+                    fill_x(v1,v2,v3,size4);
+                    size = size4;
+                }
+                //print unsorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
+                cout << "size: " << size << endl;
+                t1 = clock();
+                bubblesort(v1, count);    //100 values
+                t2 = clock();
+                cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
+                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
+
+                t1 = clock();
+                bubblesort(v2, count);    //100 values
+                t2 = clock();
+                cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
+                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+
+                 t1 = clock();
+                bubblesort(v3, count);    //100 values
+                t2 = clock();
+                cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
+                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                double avg   = (time1 + time2 + time3) / 3;
+                cout << "Having average time of: " << avg << endl;
+                //print sorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
+                pass++;
+            }
+            
         }
         else if(x == 3){
             cout << "RUNNING INSERTION SORT\n";
@@ -186,7 +242,63 @@ int main(){
             }
         }
         else if(x == 4){
-            cout << "RUNNING MODIFIED INSERTION\n";
+            //cout << "RUNNING MODIFIED INSERTION\n";
+            //int pass = 1;  //creating number of passes to know when to increment the size of the vector
+            //clock_t t1, t2; //creating time variables to time the algorithms
+            //int count = 0;  //number of comparisons
+            //int size  = 0;  //size of vector
+            //while(pass < 5){
+            //    if(pass == 1){
+            //        fill_x(v1,v2,v3,size1);
+            //        size = size1;
+            //    }
+            //    else if(pass == 2){
+            //        fill_x(v1,v2,v3,size2);
+            //        size = size2;
+            //    }
+            //    else if(pass == 3){
+            //        fill_x(v1,v2,v3,size3);
+            //        size = size3;
+            //    }
+            //    else{
+            //        fill_x(v1,v2,v3,size4);
+            //        size = size4;
+            //    }
+            //    //print unsorted matrix
+            //    printVector(v1);
+            //    printVector(v2);
+            //    printVector(v3);
+            //    cout << "size: " << size << endl;
+            //    t1 = clock();
+            //    modifiedinsertionsort(v1, count);    //100 values
+            //    t2 = clock();
+            //    cout << "for " << size << " values increasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+            //         << " with " << count << " comparisons." << endl;
+            //    count = 0;
+            //    double time1 = (t2 - t1)/CLOCKS_PER_SEC;
+            //
+            //    t1 = clock();
+            //    modifiedinsertionsort(v2, count);    //100 values
+            //    t2 = clock();
+            //    cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+            //         << " with " << count << " comparisons." << endl;
+            //    count = 0;
+            //    double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+            //
+            //     t1 = clock();
+            //    modifiedinsertionsort(v3, count);    //100 values
+            //    t2 = clock();
+            //    cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+            //         << " with " << count << " comparisons." << endl;
+            //    count = 0;
+            //    double time3 = (t2 - t1)/CLOCKS_PER_SEC;
+            //    double avg   = (time1 + time2 + time3) / 3;
+            //    //print sorted matrix
+            //    printVector(v1);
+            //    printVector(v2);
+            //    printVector(v3);
+            //    ++pass;
+            //}
         }
         else if(x == 5){
             cout << "RUNNING MERGE SORT\n";

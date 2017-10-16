@@ -57,6 +57,55 @@ int main(){
         }
         else if(x == 1){
             cout << "RUNNING SELECTION SORT\n";
+            int pass = 1;  //creating number of passes to know when to increment the size of the vector
+            clock_t t1, t2; //creating time variables to time the algorithms
+            int count = 0;  //number of comparisons
+            int size  = 0;  //size of vector
+            while(pass < 5){
+                if(pass == 1){
+                    fill_x(v1,v2,v3,size1);
+                    size = size1;
+                }
+                else if(pass == 2){
+                    fill_x(v1,v2,v3,size2);
+                    size = size2;
+                }
+                else if(pass == 3){
+                    fill_x(v1,v2,v3,size3);
+                    size = size3;
+                }
+                else{
+                    fill_x(v1,v2,v3,size4);
+                    size = size4;
+                }
+                cout << "size: " << size << endl;
+                t1 = clock();
+                selectionsort(v1, count);    //100 values
+                t2 = clock();
+                cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
+                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
+
+                t1 = clock();
+                selectionsort(v2, count);    //100 values
+                t2 = clock();
+                cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
+                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
+
+                 t1 = clock();
+                selectionsort(v3, count);    //100 values
+                t2 = clock();
+                cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
+                     << " with " << count << " comparisons." << endl;
+                count = 0;
+                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                double avg   = (time1 + time2 + time3) / 3;
+                cout << "Having average time of: " << avg << endl;
+
+                pass++;   
         }
         else if(x == 2){
             cout << "RUNNING BUBBLE SORT\n";
@@ -120,12 +169,9 @@ int main(){
             cout << "RUNNING MERGE SORT\n";
             int pass = 1;  //creating number of passes to know when to increment the size of the vector
             clock_t t1, t2; //creating time variables to time the algorithms
-            int count = 0;  //
-            int size  = 0; //creating size variable to keep track of what size of vector we're working with
+            int count = 0;  //number of comparisons
+            int size  = 0;  //size of vector
             while(pass < 5){
-                //populate 3 different vectors of the same size
-                //one in increasing order, one in decreaing order
-                //and one randomly respectively
                 if(pass == 1){
                     fill_x(v1,v2,v3,size1);
                     size = size1;
@@ -142,31 +188,34 @@ int main(){
                     fill_x(v1,v2,v3,size4);
                     size = size4;
                 }
+                cout << "size: " << size << endl;
                 t1 = clock();
-                mergesort(v1);    //all values in indexes are between 1 and 100
+                mergesort(v1, count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values increasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double T100_1 = (t2 - t1) / CLOCKS_PER_SEC;
+                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
 
                 t1 = clock();
-                mergesort(v2);    //all values in indexes are between 1 and 100
+                mergesort(v2, count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  decreasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double T100_2 = (t2 - t1) / CLOCKS_PER_SEC;
+                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
 
-                t1 = clock();
-                mergesort(v3);    //all values in indexes are between 1 and 100
+                 t1 = clock();
+                mergesort(v3, count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  randomized the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
-                double T100_3 = (t2 - t1) / CLOCKS_PER_SEC;
-                cout << "average time for this pass: " << (T100_1 + T100_2 + T100_3) / 3 << endl;
-                ++pass;
+                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
+                double avg   = (time1 + time2 + time3) / 3;
+                cout << "Having average time of: " << avg << endl;
+
+                pass++;
             }
         }
         else if(x == 6){

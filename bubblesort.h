@@ -17,12 +17,12 @@
 #include <cstdlib>
 #include <vector>
     using std::vector;
-    
-int bubblesort(vector<int> a)
+  
+void bubblesort(vector<int>& a, int& count)
 {
     int size = a.size();
     int temp;
-    int count = 0;
+    //int count = 0;
     while(size > 0)
     {
         count++;
@@ -40,39 +40,6 @@ int bubblesort(vector<int> a)
         count++;
     }
     count++;
-    /*
-    cout << "printing vector:\n";
-    for(int i = 0; i < a.size(); i++)
-    {
-        cout << a[i] << endl;
-    }
-    cout << endl;*/
-    return count;
+    return;
 }
-
-// void bubblesort(vector<int>& a, int& count)
-// {
-//     int size = a.size();
-//     int temp;
-//     //int count = 0;
-//     while(size > 0)
-//     {
-//         count++;
-//         for(int j = 0; j < size - 1; j++)
-//         {
-//             count++;
-//             if(a[j] > a[j+1])
-//             {
-//                 temp = a[j];
-//                 a[j] = a[j+1];
-//                 a[j+1] = temp;
-//             }
-//         }
-//         size--;
-//         count++;
-//     }
-//     count++;
-//     return;
-// }
-
 #endif

@@ -9,7 +9,7 @@
  *    and you should be good
  */
 
-void insertionsort(vector<int> v, int count){
+void insertionsort(vector<int> v, int& count){
    int i, key, j;
    for (i = 1; i < v.size(); ++i){
        key = v[i];

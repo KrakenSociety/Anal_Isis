@@ -49,4 +49,30 @@ int bubblesort(vector<int> a)
     cout << endl;*/
     return count;
 }
+
+// void bubblesort(vector<int>& a, int& count)
+// {
+//     int size = a.size();
+//     int temp;
+//     //int count = 0;
+//     while(size > 0)
+//     {
+//         count++;
+//         for(int j = 0; j < size - 1; j++)
+//         {
+//             count++;
+//             if(a[j] > a[j+1])
+//             {
+//                 temp = a[j];
+//                 a[j] = a[j+1];
+//                 a[j+1] = temp;
+//             }
+//         }
+//         size--;
+//         count++;
+//     }
+//     count++;
+//     return;
+// }
+
 #endif

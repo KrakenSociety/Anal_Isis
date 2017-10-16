@@ -353,7 +353,7 @@ int main(){
                 t1 = clock();
                 heapsort(v1,count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values increasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time1 = (t2 - t1)/CLOCKS_PER_SEC;
@@ -361,7 +361,7 @@ int main(){
                 t1 = clock();
                 heapsort(v2,count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  decreasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time2 = (t2 - t1)/CLOCKS_PER_SEC;
@@ -369,13 +369,15 @@ int main(){
                  t1 = clock();
                 heapsort(v3,count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  randomized the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
+                cout << "Having average time of: " << avg << endl;
 
-                ++pass;
+
+                pass++;
             }
         }
     }

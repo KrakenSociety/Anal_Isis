@@ -20,7 +20,7 @@
 #include <vector>
     using std::vector;
 
-void merge(vector<int>& a, int low, int mid, int end){
+void merge(vector<int>& a, int low, int mid, int end, int& count){
 	//create temp to complete sorting process
 	int temp[end-low+1];
 	int i = low;
@@ -29,6 +29,8 @@ void merge(vector<int>& a, int low, int mid, int end){
  
 	// Merge the two sections into temp[].
 	while (i <= mid && j <= end){
+        count++;//for loop ^above
+        count++;//for if below
 		if (a[i] < a[j]){
 			temp[k] = a[i];
 			k++;
@@ -42,36 +44,41 @@ void merge(vector<int>& a, int low, int mid, int end){
 	}
 	// Insert remaining data from i to mid into temp[].
 	while (i <= mid){
+        count++;//for loop ^above
 		temp[k] = a[i];
 		k++;
 		i++;
 	}
 	// Insert remaining data from j to end into temp[].
 	while (j <= end){
+        count++;//for loop ^above
 		temp[k] = a[j];
 		k++;
 		j++;
 	}
 	// Assign sorted data stored in temp[] to a[].
 	for (i = low; i <= end; i++){
+        count++;//for loop ^above
 		a[i] = temp[i-low];
 	}
 }
 // A function to split array into two parts.
-void mergesort(vector<int>& a, int low, int end){
+void mergesort(vector<int>& a, int low, int end, int& count){
 	int mid;
+    count++;//for if below
 	if (low < end){
 		mid=(low+end)/2;
 		// Split the data into two halves.
-		mergesort(a, low, mid);
-		mergesort(a, mid+1, end);
+		mergesort(a, low, mid, count);
+		mergesort(a, mid+1, end, count);
  
 		// Merge the  split data into a complete, sorted from.
-		merge(a, low, mid, end);
+		merge(a, low, mid, end, count);
 	}
 }
 //function meant to serve for intuitive use
-void mergesort(vector<int>& a){
-    mergesort(a, 0, a.size());
+void mergesort(vector<int>& a, int& count){
+    count = 0;
+    mergesort(a, 0, a.size(), count);
 }
 #endif

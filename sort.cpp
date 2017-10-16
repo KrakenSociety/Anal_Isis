@@ -10,8 +10,8 @@ using namespace std;
 #include<algorithm>
 //including the sorting files
 #include "quicksort.h"
-#include "mergeSort.h"
-#include "selectionSort.h"
+#include "mergesort.h"
+#include "selectionsort.h"
 #include "insertionsort.h"
 #include "heapsort.h"
 

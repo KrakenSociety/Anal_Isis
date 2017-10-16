@@ -63,6 +63,7 @@ int modinsertionsort(vector<int> v)
     {
         cout << v[i] << endl;
     }
+   return count;
 }
 
 #endif

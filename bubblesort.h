@@ -1,5 +1,8 @@
 /*
 * just a bubble sort
+*
+*   Name:   Spencer Qualls
+*   SID:    50362806
 */
 
 

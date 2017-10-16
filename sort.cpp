@@ -2,24 +2,30 @@
     using std::cout;
     using std::cin;
     using std::endl;
+    using std::left;
 #include <time.h>
 #include <cstdlib>
-using namespace std;
+    using namespace std;
 #include<vector>
     using std::vector;
+#include<iomanip>
+    using std::setprecision;
+    using std::fixed;
+    using std::setw;
 #include<algorithm>
+
+
 //including the sorting files
 #include "quicksort.h"
 #include "mergesort.h"
 #include "selectionsort.h"
 #include "insertionsort.h"
 #include "heapsort.h"
-#include "bubblesort.h"
 
 
 
 //prototype function
-void printVector(vector<int> v);
+void printVector(vector<int>& v);
 void increase (vector<int>& v, int size);
 void decrease (vector<int>& v, int size);
 void random   (vector<int>& v, int size);
@@ -58,7 +64,7 @@ int main(){
         }
         else if(x == 1){
             cout << "RUNNING SELECTION SORT\n";
-            int pass = 1;  //creating number of passes to know when to increment the size of the vector
+            int pass = 1;   //creating number of passes to know when to increment the size of the vector
             clock_t t1, t2; //creating time variables to time the algorithms
             int count = 0;  //number of comparisons
             int size  = 0;  //size of vector
@@ -79,6 +85,10 @@ int main(){
                     fill_x(v1,v2,v3,size4);
                     size = size4;
                 }
+                //print unsorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 cout << "size: " << size << endl;
                 t1 = clock();
                 selectionsort(v1, count);    //100 values
@@ -105,58 +115,16 @@ int main(){
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
                 cout << "Having average time of: " << avg << endl;
-
-                pass++;   
+                //print sorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
+                pass++;
             }
+            
         }
         else if(x == 2){
             cout << "RUNNING BUBBLE SORT\n";
-            int pass = 1;  //creating number of passes to know when to increment the size of the vector
-            clock_t t1, t2; //creating time variables to time the algorithms
-            int count = 0;  //number of comparisons
-            int size  = 0;  //size of vector
-            while(pass < 5){
-                if(pass == 1){
-                    fill_x(v1,v2,v3,size1);
-                    size = size1;
-                }
-                else if(pass == 2){
-                    fill_x(v1,v2,v3,size2);
-                    size = size2;
-                }
-                else if(pass == 3){
-                    fill_x(v1,v2,v3,size3);
-                    size = size3;
-                }
-                else{
-                    fill_x(v1,v2,v3,size4);
-                    size = size4;
-                }
-                cout << "size: " << size << endl;
-                t1 = clock();
-                count = bubblesort(v1);    //100 values
-                t2 = clock();
-                cout << "for " << size << " values increasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
-                << " with " << count << " comparisons." << endl; 
-                double time1 = (t2 - t1)/CLOCKS_PER_SEC;
-
-                t1 = clock();
-                count = bubblesort(v2);    //100 values
-                t2 = clock();
-                cout << "for " << size << " values  decreasing the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
-                     << " with " << count << " comparisons." << endl;
-                double time2 = (t2 - t1)/CLOCKS_PER_SEC;
-
-                 t1 = clock();
-                bubblesort(v3);    //100 values
-                t2 = clock();
-                cout << "for " << size << " values  randomized the time is: " << ((float)(t2 - t1)/CLOCKS_PER_SEC)
-                     << " with " << count << " comparisons." << endl;
-                double time3 = (t2 - t1)/CLOCKS_PER_SEC;
-                double avg   = (time1 + time2 + time3) / 3;
-
-                ++pass;
-            }
         }
         else if(x == 3){
             cout << "RUNNING INSERTION SORT\n";
@@ -181,11 +149,15 @@ int main(){
                     fill_x(v1,v2,v3,size4);
                     size = size4;
                 }
+                //print unsorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 cout << "size: " << size << endl;
                 t1 = clock();
                 insertionsort(v1, count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values increasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values increasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time1 = (t2 - t1)/CLOCKS_PER_SEC;
@@ -193,7 +165,7 @@ int main(){
                 t1 = clock();
                 insertionsort(v2, count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  decreasing the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  decreasing the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time2 = (t2 - t1)/CLOCKS_PER_SEC;
@@ -201,12 +173,15 @@ int main(){
                  t1 = clock();
                 insertionsort(v3, count);    //100 values
                 t2 = clock();
-                cout << "for " << size << " values  randomized the time is: " << ((t2 - t1)/CLOCKS_PER_SEC)
+                cout << "for " << size << " values  randomized the time is: " << (float(t2 - t1)/CLOCKS_PER_SEC)
                      << " with " << count << " comparisons." << endl;
                 count = 0;
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
-
+                //print sorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 ++pass;
             }
         }
@@ -236,6 +211,10 @@ int main(){
                     fill_x(v1,v2,v3,size4);
                     size = size4;
                 }
+                //print unsorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 cout << "size: " << size << endl;
                 t1 = clock();
                 mergesort(v1, count);    //100 values
@@ -262,7 +241,10 @@ int main(){
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
                 cout << "Having average time of: " << avg << endl;
-
+                //print sorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 pass++;
             }
         }
@@ -289,6 +271,10 @@ int main(){
                     fill_x(v1,v2,v3,size4);
                     size = size4;
                 }
+                //print unsorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 cout << "size: " << size << endl;
                 t1 = clock();
                 quicksort(v1,0,size - 1,count);    //100 values
@@ -315,8 +301,10 @@ int main(){
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
                 cout << "Having average time of: " << avg << endl;
-
-
+                //print sorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 pass++;
             }
         }
@@ -343,6 +331,10 @@ int main(){
                     fill_x(v1,v2,v3,size4);
                     size = size4;
                 }
+                //print unsorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 cout << "size: " << size << endl;
                 t1 = clock();
                 randomquicksort(v1,0,size - 1,count);    //100 values
@@ -369,8 +361,10 @@ int main(){
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
                 cout << "Having average time of: " << avg << endl;
-
-
+                //print sorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 pass++;
             }
         }
@@ -397,6 +391,10 @@ int main(){
                     fill_x(v1,v2,v3,size4);
                     size = size4;
                 }
+                //print unsorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 cout << "size: " << size << endl;
                 t1 = clock();
                 heapsort(v1, count);    //100 values
@@ -423,8 +421,10 @@ int main(){
                 double time3 = (t2 - t1)/CLOCKS_PER_SEC;
                 double avg   = (time1 + time2 + time3) / 3;
                 cout << "Having average time of: " << avg << endl;
-
-
+                //print sorted matrix
+                printVector(v1);
+                printVector(v2);
+                printVector(v3);
                 pass++;
             }
         }
@@ -434,17 +434,24 @@ int main(){
 
 
 void printVector(vector<int>& v){
-    for(int i = 0; i < v.size(); i++){
-        cout << "[" << v[i] << "]  ";
-        if((i % 10) == 0){              //prints 10 before moving to a new line
-            cout << endl;
+    if (v.size() == 100){
+        int count = 1;
+        for(int i = 0; i < v.size(); i++){
+            cout << "[" << setw(3) << v[i] << "] ";
+            if(count == 10){              //prints 10 before moving to a new line
+                count = 0;
+                cout << endl;
+            }
+            count++;
         }
+        cout << endl;
     }
     return;
 }
 
 
 void increase (vector<int>& v, int size){
+    v.clear(); //make sure vector is empty
     for (int i = 0; i < size; ++i){
         v.push_back(i+1);
         //cout << v[i] << endl;
@@ -453,14 +460,16 @@ void increase (vector<int>& v, int size){
 }
 
 void decrease(vector<int>& v, int size){
+    v.clear(); //make sure vector is empty
     increase(v, size);
     reverse(v.begin(), v.end());
     return;
 }
 
 void random(vector<int>& v, int size){
+    v.clear(); //make sure vector is empty
     for (int i = 0; i < size; ++i){
-        srand(time(NULL));
+        //srand(time(NULL));
         int randNum = rand() % 100 + 1;
         v.push_back(randNum);
     }
